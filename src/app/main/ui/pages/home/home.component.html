@@ -1,0 +1,4 @@
+<div class="home-container">
+  <app-loading *ngIf="loading$ | async"></app-loading>
+  <app-info-table [hidden]="loading$ | async"></app-info-table>
+</div>
