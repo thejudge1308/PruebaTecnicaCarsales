@@ -1,0 +1,15 @@
+.profile-card {
+  width: 100%;
+  .avatar-image {
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+  }
+
+  .button-section {
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.show-episode-container {
+  .content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .button {
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+}

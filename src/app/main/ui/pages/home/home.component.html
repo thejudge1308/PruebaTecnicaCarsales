@@ -1,0 +1,7 @@
+<div class="home-container">
+  <app-loading *ngIf="(loading$ | async) && !(hasError$ | async)"></app-loading>
+  <app-info-table
+    [hidden]="(loading$ | async) || (hasError$ | async)"
+  ></app-info-table>
+  <app-error *ngIf="(hasError$ | async) && !(loading$ | async)"></app-error>
+</div>
