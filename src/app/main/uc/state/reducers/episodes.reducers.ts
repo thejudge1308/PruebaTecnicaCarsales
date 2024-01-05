@@ -16,12 +16,12 @@ export const initialEpisodeState: EpisodeState = {
 export const episodesReducer = createReducer(
   initialEpisodeState,
   on(loadEpisodes, (state) => {
-    return { ...state, loading: true };
+    return { ...state, loading: true, hasError: false };
   }),
   on(loadedEpisodes, (state, { episodes }) => {
     return { ...state, loading: false, items: episodes };
   }),
   on(loadErrorEpisodes, (state) => {
-    return { ...state, hasError: false };
+    return { ...state, loading: false, hasError: false };
   })
 );

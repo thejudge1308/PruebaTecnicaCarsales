@@ -1,7 +1,13 @@
 import { createAction, props } from "@ngrx/store";
-import { EpisodeScheme } from "../../../dao/models/episodes.model";
+import {
+  EpisodeItemInfo,
+  EpisodeScheme,
+} from "../../../dao/models/episodes.model";
 import { EpisodeActionType } from "../../enums/action/episode.action.enum";
 
+/**
+ * Episodes
+ */
 export const loadEpisodes = createAction(
   EpisodeActionType.LOAD,
   props<{ page: number }>()
@@ -15,4 +21,17 @@ export const loadedEpisodes = createAction(
 export const loadErrorEpisodes = createAction(
   EpisodeActionType.ERROR,
   props<{ hasError: boolean }>()
+);
+
+/**
+ * Episode Item
+ */
+export const loadEpisode = createAction(
+  EpisodeActionType.ITEM_LOAD,
+  props<{ episode: number }>()
+);
+
+export const loadedEpisode = createAction(
+  EpisodeActionType.ITEM_LOADED,
+  props<{ episode: EpisodeItemInfo }>()
 );

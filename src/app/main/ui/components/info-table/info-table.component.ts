@@ -9,6 +9,7 @@ import {
 import { selectEpisodesList } from "../../../uc/state/selectors/episodes.selector";
 import { PageEvent } from "@angular/material/paginator";
 import { loadEpisodes } from "../../../uc/state/actions/episodes.actions";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-info-table",
@@ -23,7 +24,7 @@ export class InfoTableComponent implements OnInit {
   public itemsPerPage: number;
   public pageIndex = 0;
 
-  constructor(private store: Store<any>) {
+  constructor(private store: Store<any>, private router: Router) {
     this.totalPages = 0;
     this.itemsPerPage = 20;
     this.pageIndex = 0;
@@ -31,7 +32,7 @@ export class InfoTableComponent implements OnInit {
   ngOnInit(): void {
     this.list$ = this.store.select(selectEpisodesList);
     this.list$.subscribe((value) => {
-      this.totalPages = value.info.count;
+      this.totalPages = !!value?.info ? value?.info.count : 0;
       this.dataSource.data = !!value?.results ? value.results : [];
     });
   }
@@ -39,5 +40,9 @@ export class InfoTableComponent implements OnInit {
   public handlePageEvent(e: PageEvent) {
     this.pageIndex = e.pageIndex;
     this.store.dispatch(loadEpisodes({ page: e.pageIndex + 1 }));
+  }
+
+  public onClick(value: EpisodeItemInfo) {
+    this.router.navigate(["./episodes", value.id]);
   }
 }

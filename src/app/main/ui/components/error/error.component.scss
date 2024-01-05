@@ -1,0 +1,28 @@
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  img {
+    max-width: 500px;
+  }
+  .title {
+    margin-top: 10px;
+    margin-bottom: 8px;
+
+    span {
+      font-size: 58px;
+    }
+  }
+  .subtitle {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    span {
+      font-size: 50px;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatCardModule } from "@angular/material/card";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [],
@@ -23,6 +24,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatCardModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
+    RouterModule,
   ],
   exports: [
     HttpClientModule,
@@ -34,6 +36,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatButtonModule,
+    RouterModule,
   ],
 })
 export class SharedModule {}

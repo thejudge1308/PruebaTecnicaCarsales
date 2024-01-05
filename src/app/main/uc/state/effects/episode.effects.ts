@@ -6,20 +6,20 @@ import { ApiService } from "../../../services/api/api.service";
 import { EpisodeActionType } from "../../enums/action/episode.action.enum";
 
 @Injectable()
-export class EpisodesEffects {
-  loadEpisodes$ = createEffect(() =>
+export class EpisodeEffects {
+  loadEpisodeItem$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(EpisodeActionType.LOAD),
-      exhaustMap(({ page }) =>
-        this.apiService.getEpisodes(page).pipe(
-          map((episodes) => ({
-            type: EpisodeActionType.LOADED,
-            episodes: episodes,
+      ofType(EpisodeActionType.ITEM_LOAD),
+      exhaustMap(({ episode }) =>
+        this.apiService.getEpisode(episode).pipe(
+          map((episode) => ({
+            type: EpisodeActionType.ITEM_LOADED,
+            episode: episode,
           })),
           catchError(() =>
             of({
-              type: EpisodeActionType.ERROR,
-              episodes: [],
+              type: EpisodeActionType.ITEM_ERROR,
+              episode: {},
             })
           )
         )

@@ -13,6 +13,7 @@ import { FeatureMainReducer } from "./main/uc/state/main.state";
 import { EffectsModule } from "@ngrx/effects";
 import { EpisodesEffects } from "./main/uc/state/effects/episodes.effects";
 import { SharedModule } from "./shared/shared.module";
+import { EpisodeEffects } from "./main/uc/state/effects/episode.effects";
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +24,7 @@ import { SharedModule } from "./shared/shared.module";
     SharedModule,
     StoreModule.forRoot(FeatureMainReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot([EpisodesEffects]),
+    EffectsModule.forRoot([EpisodesEffects, EpisodeEffects]),
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],

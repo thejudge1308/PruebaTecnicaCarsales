@@ -1,0 +1,4 @@
+<div class="episode-container">
+  <app-loading *ngIf="isloading$ | async"></app-loading>
+  <app-show-episode [hidden]="isloading$ | async"></app-show-episode>
+</div>

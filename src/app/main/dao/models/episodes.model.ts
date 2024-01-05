@@ -1,3 +1,5 @@
+import { CharacterModel } from "./character.model";
+
 export interface EpisodeScheme {
   info: EpisodeInfo;
   results: EpisodeItemInfo[];
@@ -15,7 +17,7 @@ export interface EpisodeItemInfo {
   name: string;
   air_date: string;
   episode: string;
-  characters: string[];
+  characters: string[] | CharacterModel[];
   url: string;
   created: string;
 }
