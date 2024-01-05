@@ -22,6 +22,6 @@ export const episodesReducer = createReducer(
     return { ...state, loading: false, items: episodes };
   }),
   on(loadErrorEpisodes, (state) => {
-    return { ...state, loading: false, hasError: false };
+    return { ...state, loading: false, hasError: true };
   })
 );

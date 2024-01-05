@@ -1,10 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Observable, catchError, of, switchMap, tap, throwError } from "rxjs";
-import { ApiService } from "../../../services/api/api.service";
 import { Store } from "@ngrx/store";
-import { selectEpisodeItemLoading } from "../../../uc/state/selectors/episode.selector";
-import { loadEpisode } from "../../../uc/state/actions/episodes.actions";
+import {
+  selectEpisodeItemError,
+  selectEpisodeItemLoading,
+} from "../../../uc/state/selectors/episode.selector";
+import {
+  loadEpisode,
+  loadErrorEpisode,
+} from "../../../uc/state/actions/episodes.actions";
 
 @Component({
   selector: "app-episode",
@@ -14,6 +19,8 @@ import { loadEpisode } from "../../../uc/state/actions/episodes.actions";
 export class EpisodeComponent implements OnInit {
   public currentId: number;
   isloading$: Observable<boolean> = new Observable();
+  hasError$: Observable<boolean> = new Observable();
+
   constructor(private route: ActivatedRoute, private store: Store<any>) {
     this.currentId = -1;
   }
@@ -34,13 +41,14 @@ export class EpisodeComponent implements OnInit {
       .subscribe({
         next: (data) => {},
         error: (err) => {
-          console.error(err);
+          this.store.dispatch(loadErrorEpisode({ hasError: true }));
         },
       });
   }
 
   public getEpisodeInfo(id: number) {
     this.isloading$ = this.store.select(selectEpisodeItemLoading);
+    this.hasError$ = this.store.select(selectEpisodeItemError);
 
     this.store.dispatch(loadEpisode({ episode: id }));
   }

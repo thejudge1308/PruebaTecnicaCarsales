@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { CharacterModel } from "../../../../dao/models/character.model";
+import { DetailCharacterService } from "../../../../services/modal/detail-character.service";
 
 @Component({
   selector: "app-character-card",
@@ -19,6 +20,8 @@ export class CharacterCardComponent {
       this.currentCharacter = value;
     }
   }
+
+  constructor(private dialog: DetailCharacterService) {}
 
   public getName(): string {
     return !!this.currentCharacter ? this.currentCharacter.name : "";
@@ -45,5 +48,11 @@ export class CharacterCardComponent {
       ? this.currentCharacter.status
       : "default";
     return this.style[status];
+  }
+
+  public openModal(): void {
+    if (!!this.currentCharacter) {
+      this.dialog.open(this.currentCharacter).subscribe();
+    }
   }
 }

@@ -1,4 +1,4 @@
-<div class="card-container">
+<div class="card-container" (click)="openModal()">
   <img [src]="getUrl()" alt="Image" style="width: 100%" />
   <h1>{{ getName() }}</h1>
   <p class="title">{{ getGender() + " - " + getSpecies() }}</p>

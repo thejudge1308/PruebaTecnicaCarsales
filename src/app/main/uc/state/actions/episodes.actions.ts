@@ -35,3 +35,8 @@ export const loadedEpisode = createAction(
   EpisodeActionType.ITEM_LOADED,
   props<{ episode: EpisodeItemInfo }>()
 );
+
+export const loadErrorEpisode = createAction(
+  EpisodeActionType.ERROR,
+  props<{ hasError: boolean }>()
+);

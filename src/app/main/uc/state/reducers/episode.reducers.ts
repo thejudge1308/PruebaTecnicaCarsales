@@ -1,7 +1,11 @@
 import { createReducer, on } from "@ngrx/store";
 import { EpisodeItemState } from "../../../dao/models/episode.state";
 import { EpisodeItemInfo } from "../../../dao/models/episodes.model";
-import { loadEpisode, loadedEpisode } from "../actions/episodes.actions";
+import {
+  loadEpisode,
+  loadErrorEpisode,
+  loadedEpisode,
+} from "../actions/episodes.actions";
 
 export const initialEpisodeState: EpisodeItemState = {
   loading: false,
@@ -16,8 +20,8 @@ export const episodeReducer = createReducer(
   }),
   on(loadedEpisode, (state, { episode }) => {
     return { ...state, loading: false, episode: episode };
+  }),
+  on(loadErrorEpisode, (state) => {
+    return { ...state, loading: false, hasError: true };
   })
-  /*on(loadEpiso, (state) => {
-    return { ...state, loading: false, hasError: false };
-  })*/
 );
